@@ -1,5 +1,26 @@
-<finra-dropdown label="Label Text" selectedvalue="'56'" selectedtext="'56Text'" style="{{width:" 100="" +="" 'px'}}="">
-      <finra-dropdown-option slot="option" value="1">No 2</finra-dropdown-option>
-      <finra-dropdown-option slot="option" value="56">56Text</finra-dropdown-option>
-      <finra-dropdown-option slot="option" value="89">FINRA Logo and the header on top</finra-dropdown-option>
-    </finra-dropdown>
+ // No value selected initially
+  selectedValue: string | null = null;  // Set to null to ensure no selection by default
+  selectedText: string | null = null;   // Set to null to ensure no selection by default
+
+  // Method to handle the execution of the command for a selected option
+  handleCommand(option: string): void {
+    console.log('Executing command for:', option);
+    this.selectedText = option;  // Update the selected text when a command is executed
+    this.selectedValue = option; // Update the selected value
+    // You can add further logic here, like toggling the dropdown or other UI updates
+  }
+
+
+  <finra-dropdown [label]="'Label Text'"
+                [selectedvalue]="selectedValue"
+                [selectedtext]="selectedText"
+                [style]="'width: 100px'">
+  <ng-container *ngFor="let option of options">
+    <finra-dropdown-option 
+      slot="option" 
+      [value]="option.label"
+      (click)="option.command()">
+      {{ option.label }}
+    </finra-dropdown-option>
+  </ng-container>
+</finra-dropdown>
