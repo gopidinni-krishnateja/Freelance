@@ -1,5 +1,13 @@
- <finra-radio-group id="default" direction="horizontal" formControlName="hasDiscretion">
-                        <finra-radio name="hasDiscretion" slot="item" value="true"   inputId="true">Yes</finra-radio>
-                        <finra-radio name="hasDiscretion" slot="item" value="false"  inputId="false">NO</finra-radio>
-                      
-                      </finra-radio-group>
+<ng-container *ngFor="let tidType of tidTypeOptions">
+                    <div class="pt-1">
+                        <finra-radio name="tidType" 
+                        slot="item"
+                        value="tidType.value"  
+                        inputId="tidType.value"
+                        formControlName="tidType" 
+                        [id]="'tidType' + tidType.value"
+                      >{{tidType.label}}</finra-radio>
+
+                
+                    </div>
+                </ng-container>
